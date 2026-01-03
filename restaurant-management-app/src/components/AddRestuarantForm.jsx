@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getRestaurants , addRestaurant, saveRestaurants } from "../utils/localStorage.js";
 
 const AddRestuarantForm = ({ refresh }) => {
   const [form , setForm] = useState({
@@ -18,5 +19,37 @@ const AddRestuarantForm = ({ refresh }) => {
     }
 
      const data = getRestaurants();
+     const newRestaurant = {
+      ...form,
+      restaurantID: Date.now(),
+      parkingLot :form.parkingLot === "true",
+     };
 
+     saveRestaurants([...data, newRestaurant]);
+      alert("Restaurant added successfully");
+      refresh();
+      setForm({
+        ...form,
+        restaurantName: ""
+        address: "",
+      })
   });
+  return (
+    <div>
+      <h3>Add Restaurant</h3>
+      <input 
+        placeholder="Restaurant Name"
+        onChange={(e) => setForm({...form, restaurantName: e.target.value})}
+      />
+      <input 
+        placeholder="Address"
+        onChange={(e) => setForm({...form, address: e.target.value})}
+      />
+      <input 
+        type="text"
+        placeholder="Parking Lot (true/false)"
+        value={form.parkingLot}
+        onChange={(e) => setForm({...form, parkingLot: e.target.value})}
+      />
+    </div>
+  )
