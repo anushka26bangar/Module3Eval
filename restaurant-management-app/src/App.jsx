@@ -1,4 +1,7 @@
 import Login from "./pages/Login.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import CustomerDashboard from "./pages/CustomerDashboard.jsx";
+import UpdateRestuarant from "./pages/UpdateRestuarant.jsx";
 import ProtectedRoutes  from "./routes/ProtectedRoutes.jsx";
 
 function App() {
