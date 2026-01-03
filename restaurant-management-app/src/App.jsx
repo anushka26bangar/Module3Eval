@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import UpdateRestaurant from "./pages/UpdateRestaurant";
-import ProtectedRoute from "./routes/ProtectedRoute";
+import ProtectedRoutes from "./routes/ProtectedRoutes";
 
 function App() {
   return (

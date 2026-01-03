@@ -1,47 +1,36 @@
 import { useNavigate } from "react-router-dom";
-import { getRestaurants, saveRestaurants } from "../utils/localStorage.js";
+import { getRestaurants, saveRestaurants } from "../utils/localStorage";
 
 const RestaurantCard = ({ data, isAdmin, refresh }) => {
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    if (!window.confirm("Are you sure you wanna delete this restaurant"))
-      return;
+    if (!window.confirm("Are you sure you want to delete?")) return;
 
     const updated = getRestaurants().filter(
-      (r) => r.restauarantId !== data.restauarantId
+      (r) => r.restaurantID !== data.restaurantID
     );
 
     saveRestaurants(updated);
-    alert("Restuarant Deleted Successfully.");
-    refresh();
+    alert("Deleted Successfully");
+    refresh && refresh();
   };
 
   return (
-    <div style={{ border: "1px solid black", margin: "10px", padding: "0px" }}>
-      ;
-      <img
-        src={data.image}
-        alt={data.restaurantName}
-        width="100%"
-        height="200px"
-      />
-      <h3>{data.restaurantName}</h3>
-      <p>Address : {data.address}</p>
-      <p>Type : {data.type}</p>
-      <p>Parking Lot : {data.parkingLot ? "Yes" : "No"}</p>
+    <div style={{ border: "1px solid gray", padding: 10, margin: 10 }}>
+      <img src={data.image} width="200" />
+      <h4>{data.restaurantName}</h4>
+      <p>{data.address}</p>
+      <p>{data.type}</p>
+      <p>Parking: {data.parkingLot ? "Yes" : "No"}</p>
+
       {isAdmin && (
-        <div>
-          <button
-            onClick={() =>
-              navigate(`/admin/restaurants/update/${data.restaurantID}`)
-            }
-          >
+        <>
+          <button onClick={() => navigate(`/admin/restaurants/update/${data.restaurantID}`)}>
             Update
           </button>
-
           <button onClick={handleDelete}>Delete</button>
-        </div>
+        </>
       )}
     </div>
   );

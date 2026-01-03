@@ -1,9 +1,7 @@
-export const  getRestaurants = () =>{
-  JSON.parse(localStorage.getItem("evailData")) || [];
+export const getRestaurants = () => {
+  return JSON.parse(localStorage.getItem("evalData")) || [];
 };
 
-export const  saveRestaurants = (data) =>{
-
-  localStorage.setItem("evailData",JSON.stringify(data));
+export const saveRestaurants = (data) => {
+  localStorage.setItem("evalData", JSON.stringify(data));
 };
-
