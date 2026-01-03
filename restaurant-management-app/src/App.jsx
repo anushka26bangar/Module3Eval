@@ -1,9 +1,12 @@
 import Login from "./pages/Login.jsx";
+import ProtectedRoutes  from "./routes/ProtectedRoutes.jsx";
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <ProtectedRoutes>
+        <Login />
+      </ProtectedRoutes>
     </div>
   );
 }
